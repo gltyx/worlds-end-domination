@@ -39,9 +39,9 @@ database.apocalypses = {
     performApocalypse() {
         if (this.canApocalypse()) {
             const confirmed = confirm(
-                `You are about to enter Apocalypse ${database.apocalypses.getApocalypseLevel() + 1}.\n` +
-                `Performing an apocalypse will permanently change your game.\n` +
-                `Do you want to proceed?`
+                `你即将进入天启 ${database.apocalypses.getApocalypseLevel() + 1}.\n` +
+                `执行天启将永久改变你的游戏.\n` +
+                `你想继续吗?`
             );
             if (confirmed) {
                 database.money.reset();
