@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <title>World's End Domination</title>
+
+        <link rel="stylesheet" href="stylesheets/core.css">
+        <link rel="stylesheet" href="stylesheets/colors.css">
+        <link rel="stylesheet" href="stylesheets/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="toastr.min.css" />
+    </head>
+    <body>
+        <script src="chs.js"></script>
+        <script src="core.js"></script>
+        <div id="app">
+            <div class="top-bar">
+                <div v-if="database.apocalypses.canApocalypse()" class="top-bar-layer-1">
+                    <button class="apocalypse-btn" @click="database.apocalypses.performApocalypse()">
+                        Confront the Apocalypse
+                    </button>
+                </div>
+                <div class="top-bar-layer-2 top-bar-layer">
+                    <span class="money-display">
+                        Money: {{format(money)}} / {{format(database.constants.goal)}}
+                    </span>
+                    <span v-if="database.apocalypses.getApocalypseLevel() >= 1 && player.display.spells" class="mana-display">
+                        Mana: {{format(player.spells.mana, 2, 0, 1e6)}}
+                    </span>
+                </div>
+                <top-bar-buttons ref="buttons"></top-bar-buttons>
+            </div>
+            <div class="nav-bar">
+                <button v-for="tab in tabs" 
+                        class="nav-bar-btn" 
+                        @click="switchTab(tab.name)" 
+                        :class="[tab.class, {'selected': currentTab === tab.name}]">{{tab.name}}</button> 
+            </div>
+            
+            <component v-for="tab in tabs"
+                       v-show="currentTab === tab.name"
+                       :is="toTabComponent(tab.name)"
+                       :ref="tab.name"
+                       :key="tab.name"></component>
+        </div>
+    </body>
+
+    <!-- Development -->
+    <script src="popper.min.js"></script>
+    <script src="tippy-bundle.umd.js"></script>
+    <script src="javascripts/libraries/vue.js"></script>
+
+    <!-- Production -->
+    <!-- <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script> 
+    <script src="javascripts/libraries/vue.min.js"></script>-->
+
+    <script src="jquery-3.6.0.min.js" ></script>
+    <script src="toastr.min.js"></script>
+    <script src="javascripts/libraries/break_infinity.min.js"></script>
+
+    <script src="javascripts/classes/Building.js"></script>
+    <script src="javascripts/classes/Upgrade.js"></script>
+    <script src="javascripts/classes/Spell.js"></script>
+
+    <script src="javascripts/database/index.js"></script>
+    <script src="javascripts/database/constants.js"></script>
+    <script src="javascripts/database/stats.js"></script>
+    <script src="javascripts/database/money.js"></script>
+    <script src="javascripts/database/buildings.js"></script>
+    <script src="javascripts/database/upgrades.js"></script>
+    <script src="javascripts/database/apocalypses.js"></script>
+    <script src="javascripts/database/spells.js"></script>
+    <script src="javascripts/database/manaShop.js"></script>
+    <script src="javascripts/utils.js"></script>
+    
+    <script src="javascripts/player.js"></script>
+    <script src="javascripts/saveManager.js"></script>
+
+    <script src="javascripts/components/ProgressBar.js"></script>
+    
+    <script src="javascripts/components/TopBarButtons.js"></script>
+    
+    <script src="javascripts/components/MainTab.js"></script>
+    <script src="javascripts/components/BuildingsDisplay.js"></script>
+    <script src="javascripts/components/BuildingDisplay.js"></script>
+    <script src="javascripts/components/UpgradesDisplay.js"></script>
+    <script src="javascripts/components/UpgradeButton.js"></script>
+    <script src="javascripts/components/SpellsDisplay.js"></script>
+    <script src="javascripts/components/SpellDisplay.js"></script>
+
+
+    <script src="javascripts/components/ApocalypseTab.js"></script>
+    <script src="javascripts/components/ApocalypseDisplay.js"></script>
+
+    <script src="javascripts/components/AutomationTab.js"></script>
+    <script src="javascripts/components/AutobuyerDisplay.js"></script>
+
+    <script src="javascripts/components/ManaShopTab.js"></script>
+    <script src="javascripts/components/ManaShopUpgrade.js"></script>
+    
+    <script src="javascripts/components/SettingsTab.js"></script>
+    <script src="javascripts/components/placeholders.js"></script>
+
+    
+    <script src="javascripts/gameloop.js"></script>
+    <script src="javascripts/index.js"></script>
+<!--客服 开始-->
+<link rel="stylesheet" href="//g8hh.github.io/static/css/kf.css" type="text/css" media="screen" charset="utf-8">
+<script src="//g8hh.github.io/static/js/kf.js"></script>
+<!-- 客服 结束 -->
+<!--站长统计-->
+    <div style="display: none">
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?6581389daf4dd6fe7dbb4d20fdcb52a6";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+    </div>
+</html>

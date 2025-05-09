@@ -1,0 +1,514 @@
+html {
+    font-size: 0.75em;
+}
+
+body {
+    margin: 16px;
+    background-color: var(--background);
+}
+
+#app {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* config for toastr */
+
+.toast {
+    font-size: 1.3rem;
+}
+
+/* global stuff */
+
+button {
+    font-size: 1rem;
+    background-color: var(--background);
+    border: 2px solid var(--color);
+    border-radius: 4px 4px;
+    cursor: pointer;
+	transition: background-color 0.2s;
+}
+
+button:hover {
+	background-color: var(--hover);
+}
+
+button.buyable {
+	border-color: var(--color-green);
+}
+
+button.locked {
+	border-color: var(--color-red);
+}
+
+button.bought {
+    background-color: var(--color-yellow);
+	border-color: var(--color);
+    cursor: default;
+}
+
+button.on, button.green {
+	border-color: var(--color-green);
+}
+
+button.off, button.red {
+	border-color: var(--color-red);
+}
+
+button.disabled {
+    border-color: var(--color);
+    opacity: 40%;
+    cursor: default;
+}
+
+button.disabled:hover {
+    background-color: inherit;
+}
+
+.grey-out {
+    opacity: 33%;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+/* Actual stuff */
+
+/* top bar display */
+
+.top-bar {
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.top-bar .top-bar-layer {
+    margin-bottom: 8px;
+    display: flex;
+    justify-content: center;
+}
+
+.apocalypse-btn {
+    width: 50%;
+    min-height: 96px;
+}
+
+.top-bar-layer-2 {
+    margin-top: 16px;
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.top-bar-layer-2 .money-display, .top-bar-layer-2 .mana-display {
+    font-size: 1.5rem;
+    margin-right: 5rem;
+}
+
+.top-bar-layer-3 button {
+    min-width: 20rem;
+    min-height: 4.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    margin: 0 4px;
+}
+
+.top-bar-layer-3 .gain {
+    font-size: 1.3rem;
+}
+
+.top-bar-layer-3 .mana-gain-integral {
+    color: var(--color-mana);
+    font-weight: bold;
+}
+
+.top-bar-layer-3 .mana-gain-decimal {
+    font-size: 1rem;
+}
+
+.mana-cooldown-bar {
+    width: 75%;
+    height: 2px;
+}
+
+/* top bar buttons */
+
+/* Nav-bar */
+.nav-bar {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+    justify-content: center;
+}
+
+.nav-bar-btn {
+    font-size: 1.3rem;
+    min-width: 10rem;
+    min-height: 3rem;
+    margin-right: 8px;
+    transition: 0s;
+}
+
+.nav-bar-btn.selected {
+    background-color: var(--color);
+    color: var(--background);
+}
+
+.nav-bar-btn.main-tab-btn {
+    color: var(--color);
+    background-color: var(--color-money-background);
+    border-color: var(--color-money);
+}
+
+.nav-bar-btn.main-tab-btn:hover, .nav-bar-btn.main-tab-btn.selected {
+    background-color: var(--color-money);
+}
+
+.nav-bar-btn.automation-tab-btn {
+    color: var(--color);
+    background-color: var(--color-automation-background);
+    border-color: var(--color-automation);
+}
+
+.nav-bar-btn.automation-tab-btn:hover, .nav-bar-btn.automation-tab-btn.selected {
+    color: var(--background);
+    background-color: var(--color-automation);
+}
+
+.nav-bar-btn.apocalypse-tab-btn {
+    color: var(--color);
+    background-color: var(--color-apocalypse-background);
+    border-color: var(--color-apocalypse);
+}
+
+.nav-bar-btn.apocalypse-tab-btn:hover, .nav-bar-btn.apocalypse-tab-btn.selected {
+    color: var(--background);
+    background-color: var(--color-apocalypse);
+}
+
+.nav-bar-btn.mana-tab-btn {
+    color: var(--color);
+    background-color: var(--color-mana-background);
+    border-color: var(--color-mana);
+}
+
+.nav-bar-btn.mana-tab-btn:hover, .nav-bar-btn.mana-tab-btn.selected {
+    color: var(--background);
+    background-color: var(--color-mana);
+}
+
+
+/* Tabs */
+.tab {
+    text-align: center;
+}
+
+/* Main tab */
+
+/* Tab layout */
+
+.main-tab-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.buildings-section {
+    width: 45%;
+    margin-right: 8px;
+}
+
+.buildings-section.pre-apocalypse {
+    width: 75%;
+    margin: 0 8px;
+}
+
+.buildings-section.pre-apocalypse .building-con {
+    width: 75%;
+    margin: auto;
+}
+
+.spells-section {
+    width: 45%;
+    margin-left: 8px;
+}
+
+/* Buildings */
+
+.building-con {
+    padding-bottom: 16px;
+}
+
+.building {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-bottom: 16px;
+}
+
+.building-text-con {
+    font-size: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: baseline;
+}
+
+.building-name {
+    font-size: 1.2rem;
+}
+
+.building-auto-btn {
+    min-width: 7rem;
+    height: 2.3rem;
+}
+
+.building-buy-btn, .building-mode-btn, .building-max-all-btn {
+    min-width: 13rem;
+    height: 2.3rem;
+}
+
+.building-util-btn-con {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+/* Building Upgrades */
+
+.upgrades-section-con {
+    text-align: center;
+}
+
+.upgrades-section-con .upgrades-header {
+    font-size: 1.3rem;
+    text-align: center;
+    margin-bottom: 8px;
+}
+
+.upgrades-section-con .upg-buy-all-btn {
+    width: 13rem;
+    height: 2.3rem;
+}
+
+.upgrades-section-con .upg-list {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.upgrades-section-con .upg-name {
+    font-size: 1.2rem;
+}
+
+.upgrades-section-con .upg-desc {
+    font-style: italic;
+}
+
+.upgrades-section-con .upg-btn {
+	width: 13rem;
+	height: 11rem;
+	margin: 8px;
+	padding: 8px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+    align-items: center;
+}
+
+/* Spells */
+
+.spell-con {
+    margin-bottom: 16px;
+    border: 2px solid var(--color-mana);
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+
+    min-height: 4rem;
+}
+
+.spell-text-display {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.spell-info-con {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    flex-grow: 1;
+    border-right: 2px solid var(--color-mana);
+}
+
+.spell-property-con {
+    min-width: 11rem;
+    padding: 4px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    text-align: start;
+}
+
+.spell-buttons {
+    border-top: 2px solid var(--color-mana);
+    border-bottom: 2px solid var(--color-mana);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.spell-use-button-con {
+    border-right: 2px solid var(--color-mana);
+    display: flex;
+    flex-direction: row;
+    padding: 4px;
+    justify-content: space-around;
+    flex-grow: 1;
+}
+
+.spell-toggle-btn, .spell-activate-btn {
+    width: 50%;
+    min-height: 2rem;
+    margin: 0 4px;
+}
+
+.spell-level-adjust {
+    padding: 4px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.spell-level {
+    min-width: 5rem;
+}
+
+.spell-level-adjust button {
+    margin: 0 4px;
+    min-height: 2rem;
+    flex-grow: 1;
+}
+
+.spell-name {
+    font-size: 1.2rem;
+}
+
+.spell-progress-bar {
+    width: calc(100% - 4px);
+    height: 4px;
+    margin: 2px;
+    border-radius: 2px;
+}
+
+.spell-money-requirement {
+    margin: auto;
+}
+
+/* Automation tab */
+.automation-tab {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.autobuyer-display {
+    width: max(min(50%, 50rem), 30rem);
+    height: 7rem;
+    margin-bottom: 12px;
+}
+
+.automation-unlock-btn, .automation-autobuy-con {
+    width: 100%;
+    height: 100%;
+}
+
+.automation-autobuy-con {
+    box-sizing: border-box;
+    border: 2px solid var(--color);
+    border-radius: 4px;
+    padding: 8px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.automation-autobuy-title {
+    font-size: 1.2rem;
+}
+
+.automation-autobuy-btn-con {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.automation-autobuy-btn-con button {
+    min-width: 13rem;
+    height: 2.3rem;
+}
+
+
+/* Mana Shop tab */
+
+.mana-shop-tab .upg-con {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.mana-shop-tab .upg-btn {
+    width: 15rem;
+    height: 11rem;
+    padding: 8px;
+    margin: 8px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.mana-shop-tab .upg-name {
+    font-size: 1.2rem;
+}
+
+/* Apocalypses tab */
+.apocalypse-info {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 16px;
+}
+
+.apocalypse-name {
+    font-size: 1.5rem;
+}
+
+.apocalypse-info-subheading {
+    font-size: 1.3rem;
+    margin: 16px;
+}
+
+.apocalypse-desc {
+    margin-bottom: 6px;
+}
+
+.settings-tab {
+    font-size: 1.2rem;
+}
+
+.settings-tab button {
+    min-width: 10rem;
+    min-height: 2.5rem;
+}
