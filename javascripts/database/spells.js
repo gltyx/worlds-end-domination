@@ -154,8 +154,8 @@ database.spells = {
         if (!this.canConvert()) return;
         if (player.settings.manaConfirmation) {
             if (!confirm(
-                "This will reset your money, buildings and building upgrades." +
-                "Do you want to proceed? (You can disable this in the settings)"
+                "这将重置你的金钱，建筑和建筑升级." +
+                "你想继续吗? (您可以在设置中禁用此功能)"
             )) return;
         }
 
